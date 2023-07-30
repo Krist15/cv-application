@@ -18,7 +18,7 @@ export default function ContactMe() {
           />
         </div>
         <div className="w-full">
-          <p className="text-white">ADRESS</p>
+          <p className="text-white">ADDRES</p>
           <p className="text-white break-normal font-extralight">
             123, Street Oclaho, New York City, USA
           </p>
