@@ -1,6 +1,6 @@
 export default function ProSkills() {
   return (
-    <div>
+    <div className="flex flex-col gap-4 mb-12">
       <div className="flex items-center justify-center w-full h-11 p-6 border-2 border-[#fe9c00]">
         <h2 className="text-white text-2xl">PRO SKILLS</h2>
       </div>

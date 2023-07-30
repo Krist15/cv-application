@@ -7,7 +7,7 @@ import SocialMedia from './SocialMedia';
 
 export default function CvPreview() {
   return (
-    <div className="flex h-[1123px] w-[794px] mx-10 relative">
+    <div className="flex h-[1123px] w-[950px] mx-10 relative">
       <AboutMe />
       <div className="w-[63%] bg-[#f5f4ee]  border-b-[2rem] border-[#fe9c00]">
         <div className="mt-80">
