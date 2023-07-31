@@ -5,7 +5,11 @@ import Experience from './Experience';
 import ProSkills from './ProSkills';
 import SocialMedia from './SocialMedia';
 
-export default function CvPreview() {
+type CvPreviewProps = {
+  width: number;
+};
+
+export default function CvPreview(props: CvPreviewProps) {
   return (
     <div className="flex h-[1123px] w-[950px] mx-10 relative">
       <AboutMe />
@@ -17,7 +21,7 @@ export default function CvPreview() {
       </div>
       <div className="flex flex-col w-[37%] bg-[#2b2b2d] pt-[15rem] px-5 border-3 border-red-50">
         <ContactMe />
-        <ProSkills />
+        <ProSkills width={props.width} />
         <SocialMedia />
       </div>
     </div>
