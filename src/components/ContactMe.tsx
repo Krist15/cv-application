@@ -2,8 +2,13 @@ import '../assets/location.svg';
 import locationLogo from '../assets/location.svg';
 import worldLogo from '../assets/world.svg';
 import phoneLogo from '../assets/phone.svg';
+import { ContactMeType } from '../App';
 
-export default function ContactMe() {
+type ContactMeProps = {
+  ContactMeInfo: ContactMeType;
+};
+
+export default function ContactMe({ ContactMeInfo }: ContactMeProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-center w-full h-11 p-6 border-2 border-[#fe9c00]">
@@ -20,7 +25,7 @@ export default function ContactMe() {
         <div className="w-full">
           <p className="text-white">ADDRES</p>
           <p className="text-white break-normal font-extralight">
-            123, Street Oclaho, New York City, USA
+            {ContactMeInfo.address}
           </p>
         </div>
       </div>
@@ -35,7 +40,7 @@ export default function ContactMe() {
         <div className="w-full">
           <p className="text-white">WEB</p>
           <p className="text-white break-all font-extralight">
-            christopher1225@gmail.com
+            {ContactMeInfo.web}
           </p>
         </div>
       </div>
@@ -50,7 +55,7 @@ export default function ContactMe() {
         <div className="w-full">
           <p className="text-white">PHONE</p>
           <p className="text-white break-normal font-extralight">
-            1234 5678 9090 1111
+            {ContactMeInfo.phone}
           </p>
         </div>
       </div>
