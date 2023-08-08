@@ -2,7 +2,7 @@ import '../assets/location.svg';
 import locationLogo from '../assets/location.svg';
 import worldLogo from '../assets/world.svg';
 import phoneLogo from '../assets/phone.svg';
-import { ContactMeType } from '../App';
+import { ContactMeType } from '../types';
 
 type ContactMeProps = {
   ContactMeInfo: ContactMeType;

@@ -16,8 +16,13 @@ export default function ProSkills({ width }: PropSkillsProps) {
               height: '100%',
               width: `${width}%`,
               backgroundColor: '#fe9c00',
+              display: 'flex',
+              justifyItems: 'center',
+              alignItems: 'center',
             }}
-          ></div>
+          >
+            {width}%
+          </div>
         </div>
       </div>
       <div className="flex flex-col items-center w-full text-white">

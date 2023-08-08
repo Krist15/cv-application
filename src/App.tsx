@@ -1,26 +1,15 @@
 import CvPreview from './components/CvPreview';
 import Form from './components/Form';
 import { useState } from 'react';
-
-export type About = {
-  name: string;
-  lastName: string;
-  profession: string;
-};
-
-export type ContactMeType = {
-  address: string;
-  web: string;
-  phone: string;
-};
+import { About, ContactMeType } from './types';
 
 export default function App() {
   const [width, setWidth] = useState(0);
 
   const [about, setAbout] = useState<About>({
-    name: '',
-    lastName: '',
-    profession: '',
+    name: 'Joeh Doe',
+    lastName: 'Doe',
+    profession: 'Software Engineer',
   });
   const [contactMe, setContactMe] = useState<ContactMeType>({
     address: '',
@@ -46,6 +35,7 @@ export default function App() {
         handleRangeChange={handleRangeChange}
         handleInputChange={handleInputChange}
         width={width}
+        about={about}
       />
       <CvPreview
         width={width}
