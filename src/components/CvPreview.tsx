@@ -4,12 +4,14 @@ import Education from './Education';
 import Experience from './Experience';
 import ProSkills from './ProSkills';
 import SocialMedia from './SocialMedia';
-import { About } from '../App';
-import { ContactMeType } from '../App';
+import { About, EducationType, ExperienceType } from '../types';
+import { ContactMeType } from '../types';
 
 type CvPreviewProps = {
   width: number;
   about: About;
+  educationList: EducationType[];
+  experienceList: ExperienceType[];
   ContactMeType: ContactMeType;
 };
 
@@ -19,8 +21,8 @@ export default function CvPreview(props: CvPreviewProps) {
       <AboutMe about={props.about} />
       <div className="w-[63%] bg-[#f5f4ee]  border-b-[2rem] border-[#fe9c00]">
         <div className="mt-80">
-          <Education />
-          <Experience />
+          <Education educationList={props.educationList} />
+          <Experience experienceList={props.experienceList} />
         </div>
       </div>
       <div className="flex flex-col w-[37%] bg-[#2b2b2d] pt-[15rem] px-5 border-3 border-red-50">

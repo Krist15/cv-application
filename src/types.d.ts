@@ -18,9 +18,9 @@ export type EducationType = {
 };
 
 export type ExperienceType = {
-  period: string;
+  experiencePeriod: string;
   company: string;
-  description: string;
+  experienceDescription: string;
 };
 
 export type ProSkillsType = {
