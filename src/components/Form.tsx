@@ -1,5 +1,6 @@
 import React from 'react';
 import { About, EducationType, ExperienceType } from '../types';
+import printIcon from '../assets/print.svg';
 
 type FormProps = {
   width: number;
@@ -14,10 +15,18 @@ type FormProps = {
   >;
   handleEducation: () => void;
   handleExperience: () => void;
+  handleProSkills: () => void;
+  handlePrint: () => void;
 };
 
 export default function Form(props: FormProps) {
-  const isDisabled = () => {
+  const disableExperience = () => {
+    if (props.experienceList.length >= 2) {
+      return true;
+    }
+  };
+
+  const disableEducation = () => {
     if (props.educationList.length >= 2) {
       return true;
     }
@@ -116,16 +125,15 @@ export default function Form(props: FormProps) {
           />
           <button
             type="button"
-            className={`rounded-md border border-black hover:bg-gray-100 transition ease-out my-3 ${
-              isDisabled() && 'bg-gray-100 cursor-not-allowed'
+            className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 ${
+              disableEducation() && 'bg-gray-100 cursor-not-allowed'
             }`}
             onClick={props.handleEducation}
-            disabled={isDisabled()}
+            disabled={disableEducation()}
           >
             ➕
           </button>
         </div>
-        {/* <Education educationList={props.educationList} /> */}
         <h2 className="text-2xl text-center">Experience</h2>
         <div className="flex flex-col">
           <label
@@ -170,11 +178,11 @@ export default function Form(props: FormProps) {
           />
           <button
             type="button"
-            className={`rounded-md border border-black hover:bg-gray-100 transition ease-out my-3 ${
-              isDisabled() && 'bg-gray-100 cursor-not-allowed'
+            className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 ${
+              disableExperience() && 'bg-gray-100 cursor-not-allowed'
             }`}
             onClick={props.handleExperience}
-            disabled={isDisabled()}
+            disabled={disableExperience()}
           >
             ➕
           </button>
@@ -225,18 +233,52 @@ export default function Form(props: FormProps) {
             className="rounded-md bg-gray-200"
           />
         </div>
+        <h2 className="text-2xl text-center">Pro Skills</h2>
+        <div className="flex w-1/2 gap-x-2">
+          <div className="flex flex-col w-full">
+            <label
+              htmlFor="skills"
+              className="text-center font-light text-lg"
+            >
+              Skill {props.width}%
+            </label>
+            <input
+              type="text"
+              name="skill"
+              className="rounded-md bg-gray-200"
+              onChange={props.handleInputChange}
+            />
+            <input
+              type="range"
+              min={1}
+              max={100}
+              step={1}
+              value={props.width}
+              onChange={props.handleRangeChange}
+            />
+          </div>
+          <div className="flex items-end justify-end h-full">
+            <button
+              type="button"
+              onClick={props.handleProSkills}
+              className="bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 w-10 h-10 mt-6 text-white text-3xl flex justify-center"
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={props.handlePrint}
+          className="bg-green-300 rounded border hover:bg-green-400 transition ease-out w-10 h-10text-3xl flex justify-center"
+        >
+          <img
+            src={printIcon}
+            alt="Print Icon"
+            className="w-8"
+          />
+        </button>
       </form>
     </div>
   );
 }
-
-// const range = {
-//    <input
-//           type="range"
-//           min={1}
-//           max={100}
-//           step={1}
-//           value={props.width}
-//           onChange={props.handleRangeChange}
-//         />
-// };
