@@ -1,5 +1,5 @@
 import React from 'react';
-import { About, EducationType, ExperienceType } from '../types';
+import { About, EducationType, ExperienceType, ProSkillsType } from '../types';
 import printIcon from '../assets/print.svg';
 
 type FormProps = {
@@ -9,6 +9,7 @@ type FormProps = {
   experience: ExperienceType;
   educationList: EducationType[];
   experienceList: ExperienceType[];
+  proSkillsList: ProSkillsType[];
   handleRangeChange: React.ChangeEventHandler<HTMLInputElement>;
   handleInputChange: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -20,17 +21,11 @@ type FormProps = {
 };
 
 export default function Form(props: FormProps) {
-  const disableExperience = () => {
-    if (props.experienceList.length >= 2) {
-      return true;
-    }
-  };
+  const disableExperience = () => props.experienceList.length >= 3;
 
-  const disableEducation = () => {
-    if (props.educationList.length >= 2) {
-      return true;
-    }
-  };
+  const disableEducation = () => props.educationList.length >= 3;
+
+  const disableProSkills = () => props.proSkillsList.length >= 5;
 
   return (
     <div className="w-2/5 h-full bg-[#f5f4ee]">
@@ -46,7 +41,7 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="name"
-            placeholder={props.about.name}
+            placeholder="Joe"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
@@ -76,7 +71,7 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="profession"
-            placeholder={props.about.profession}
+            placeholder="Web Developer"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
@@ -92,7 +87,7 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="period"
-            value={props.education.period}
+            placeholder="2020-2021"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
@@ -105,7 +100,7 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="school"
-            value={props.education.school}
+            placeholder="University"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
@@ -119,7 +114,7 @@ export default function Form(props: FormProps) {
             name="description"
             rows={2}
             cols={30}
-            value={props.education.description}
+            placeholder="Description"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200 resize-none"
           />
@@ -144,8 +139,8 @@ export default function Form(props: FormProps) {
           </label>
           <input
             type="text"
-            name="period"
-            value={props.education.period}
+            name="experiencePeriod"
+            placeholder="2021 - Present"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
@@ -158,7 +153,7 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="company"
-            value={props.experience.company}
+            placeholder="Company Name"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
@@ -172,7 +167,7 @@ export default function Form(props: FormProps) {
             name="experienceDescription"
             rows={2}
             cols={30}
-            value={props.experience.experienceDescription}
+            placeholder="Description"
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200 resize-none"
           />
@@ -245,6 +240,7 @@ export default function Form(props: FormProps) {
             <input
               type="text"
               name="skill"
+              placeholder="Javascript"
               className="rounded-md bg-gray-200"
               onChange={props.handleInputChange}
             />
@@ -261,7 +257,10 @@ export default function Form(props: FormProps) {
             <button
               type="button"
               onClick={props.handleProSkills}
-              className="bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 w-10 h-10 mt-6 text-white text-3xl flex justify-center"
+              disabled={disableProSkills()}
+              className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 w-10 h-10 mt-6 text-white text-3xl flex justify-center ${
+                disableProSkills() && 'bg-gray-100 cursor-not-allowed'
+              }`}
             >
               +
             </button>

@@ -15,9 +15,9 @@ export default function App() {
   const [width, setWidth] = useState(0);
 
   const [about, setAbout] = useState<About>({
-    name: 'Joeh Doe',
-    lastName: 'Doe',
-    profession: 'Software Engineer',
+    name: '',
+    lastName: '',
+    profession: '',
   });
   const [contactMe, setContactMe] = useState<ContactMeType>({
     address: '',
@@ -26,10 +26,10 @@ export default function App() {
   });
 
   const [education, setEducation] = useState<EducationType>({
-    period: '2010-2022',
-    school: 'Udemy',
-    degree: 'Web Development',
-    description: 'Web Development lorem ipsum lorem ipsum lorem ipsum',
+    period: '',
+    school: '',
+    degree: '',
+    description: '',
   });
 
   const [proSkills, setProSkills] = useState<ProSkillsType>({
@@ -104,6 +104,7 @@ export default function App() {
         about={about}
         education={education}
         educationList={educationList}
+        proSkillsList={proSkillsList}
       />
       <CvPreview
         width={width}
