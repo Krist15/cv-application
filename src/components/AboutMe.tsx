@@ -1,4 +1,4 @@
-import { About } from '../App';
+import { About } from '../types';
 
 type AboutProps = {
   about: About;
