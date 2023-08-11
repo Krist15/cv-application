@@ -18,6 +18,7 @@ type FormProps = {
   handleExperience: () => void;
   handleProSkills: () => void;
   handlePrint: () => void;
+  handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Form(props: FormProps) {
@@ -75,6 +76,16 @@ export default function Form(props: FormProps) {
             onChange={props.handleInputChange}
             className="rounded-md bg-gray-200"
           />
+          <div className="flex">
+            <label htmlFor="select-image">Select Image</label>
+            <input
+              type="file"
+              name="selectImage"
+              id="select-image"
+              className="w-40"
+              onChange={props.handleImageChange}
+            />
+          </div>
         </div>
         <h2 className="text-2xl text-center">Education</h2>
         <div className="flex flex-col">

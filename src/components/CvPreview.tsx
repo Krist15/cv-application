@@ -9,6 +9,7 @@ import { ContactMeType } from '../types';
 type CvPreviewProps = {
   width: number;
   about: About;
+  imageUrl: string | null;
   educationList: EducationType[];
   experienceList: ExperienceType[];
   proSkillsList: ProSkillsType[];
@@ -22,7 +23,10 @@ export default function CvPreview(props: CvPreviewProps) {
       className="flex h-[279mm] w-[216mm] sticky top-0"
       ref={props.componentRef}
     >
-      <AboutMe about={props.about} />
+      <AboutMe
+        about={props.about}
+        imageUrl={props.imageUrl}
+      />
       <div className="w-[63%] bg-[#f5f4ee]  border-b-[2rem] border-[#fe9c00]">
         <div className="mt-80">
           <Education educationList={props.educationList} />

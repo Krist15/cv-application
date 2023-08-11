@@ -49,6 +49,27 @@ export default function App() {
 
   const componenRef = useRef(null);
 
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const selectedFile = e.target.files?.[0];
+      if (
+        selectedFile &&
+        (selectedFile.type === 'image/jpeg' ||
+          selectedFile.type === 'image/jpg' ||
+          selectedFile.type === 'image/png')
+      ) {
+        const imageUrl = window.URL.createObjectURL(selectedFile);
+        setSelectedImage(imageUrl);
+      } else {
+        throw new Error('Unsupported image type');
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   const handlePrint = useReactToPrint({
     content: () => componenRef.current,
   });
@@ -71,7 +92,6 @@ export default function App() {
     setProSkillsList([...proSkillsList, proSkills]);
     setProSkills({ skill: '', width: 0 });
     setWidth(0);
-    console.log(proSkills);
   };
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,6 +117,7 @@ export default function App() {
         handleEducation={handleEducation}
         handleExperience={handleExperience}
         handleProSkills={handleProSkills}
+        handleImageChange={handleImageChange}
         handlePrint={handlePrint}
         experience={experience}
         experienceList={experienceList}
@@ -114,6 +135,7 @@ export default function App() {
         proSkillsList={proSkillsList}
         ContactMeType={contactMe}
         componentRef={componenRef}
+        imageUrl={selectedImage}
       />
     </main>
   );
