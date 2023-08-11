@@ -27,7 +27,7 @@ export default function AboutMe({ about, imageUrl }: AboutProps) {
           <img
             src={imageUrl}
             alt="Curriculum Vitae Image"
-            className="w-full h-full rounded-full -z-10"
+            className="w-full h-full rounded-full -z-10 object-cover"
           />
         )}
       </div>
