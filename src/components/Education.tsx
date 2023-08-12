@@ -1,10 +1,4 @@
 import { useCvState } from '../store/useStore';
-// import { EducationType } from '../types';
-// import { useCvState } from '../store/useStore';
-
-// type EducationProps = {
-//   educationList: EducationType[];
-// };
 
 export default function Education() {
   const { cvState } = useCvState();

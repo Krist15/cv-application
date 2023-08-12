@@ -3,17 +3,9 @@ import ContactMe from './ContactMe';
 import Education from './Education';
 import Experience from './Experience';
 import ProSkills from './ProSkills';
-import { About, EducationType, ExperienceType, ProSkillsType } from '../types';
-import { ContactMeType } from '../types';
 
 type CvPreviewProps = {
-  width: number;
-  about: About;
   imageUrl: string | null;
-  educationList: EducationType[];
-  experienceList: ExperienceType[];
-  proSkillsList: ProSkillsType[];
-  ContactMeType: ContactMeType;
   componentRef: React.LegacyRef<HTMLDivElement>;
 };
 
@@ -27,15 +19,12 @@ export default function CvPreview(props: CvPreviewProps) {
       <div className="w-[63%] bg-[#f5f4ee]  border-b-[2rem] border-[#fe9c00]">
         <div className="mt-80">
           <Education />
-          <Experience experienceList={props.experienceList} />
+          <Experience />
         </div>
       </div>
       <div className="flex flex-col w-[37%] bg-[#2b2b2d] pt-[15rem] px-5 border-3 border-red-50">
-        <ContactMe ContactMeInfo={props.ContactMeType} />
-        <ProSkills
-          width={props.width}
-          proSkillsList={props.proSkillsList}
-        />
+        <ContactMe />
+        <ProSkills />
       </div>
     </div>
   );

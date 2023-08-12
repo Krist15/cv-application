@@ -1,17 +1,25 @@
 import { create } from 'zustand';
-import { CvInfo, EducationType } from '../types';
+import { CvInfo, EducationType, ExperienceType, ProSkillsType } from '../types';
 
 interface CvState {
   cvState: CvInfo;
   educationState: EducationType;
+  experienceState: ExperienceType;
+  proSkillState: ProSkillsType;
+  skillRange: number;
   handleAboutChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleContactMeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleEducationChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  handleExperienceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleExperienceChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  handleRangeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleProSkillsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddEducation: () => void;
+  handleAddExperience: () => void;
+  handleAddProSkills: () => void;
 }
 
 const cv: CvInfo = {
@@ -26,21 +34,32 @@ const cv: CvInfo = {
     phone: '',
   },
   education: [],
-  experience: {
-    experiencePeriod: '',
-    company: '',
-    experienceDescription: '',
-  },
+  experience: [],
   proSkills: [],
+};
+
+const initEducation: EducationType = {
+  period: '',
+  school: '',
+  description: '',
+};
+const initExperience: ExperienceType = {
+  experiencePeriod: '',
+  company: '',
+  experienceDescription: '',
+};
+const initProSkill: ProSkillsType = {
+  width: 0,
+  skill: '',
 };
 
 export const useCvState = create<CvState>((set) => ({
   cvState: cv,
-  educationState: {
-    period: '',
-    school: '',
-    description: '',
-  },
+  educationState: initEducation,
+  experienceState: initExperience,
+  proSkillState: initProSkill,
+  skillRange: 0,
+
   handleAboutChange: (e) => {
     const { value, name } = e.target;
     set((state) => {
@@ -81,30 +100,25 @@ export const useCvState = create<CvState>((set) => ({
     });
   },
   handleExperienceChange: (e) => {
-    const { value, name } = e.target;
     set((state) => {
+      const { name, value } = e.target;
       return {
-        cvState: {
-          ...state.cvState,
-          experience: {
-            ...state.cvState.experience,
-            [name]: value,
-          },
+        experienceState: {
+          ...state.experienceState,
+          [name]: value,
         },
       };
     });
   },
 
   handleProSkillsChange: (e) => {
-    const { value, name } = e.target;
+    const { name, value } = e.target;
+
     set((state) => {
       return {
-        cvState: {
-          ...state.cvState,
-          proSkills: {
-            ...state.cvState.proSkills,
-            [name]: value,
-          },
+        proSkillState: {
+          ...state.proSkillState,
+          [name]: value,
         },
       };
     });
@@ -118,6 +132,35 @@ export const useCvState = create<CvState>((set) => ({
           ...state.cvState,
           education: [...state.cvState.education, state.educationState],
         },
+      };
+    });
+  },
+  handleAddExperience: () => {
+    set((state) => {
+      return {
+        cvState: {
+          ...state.cvState,
+          experience: [...state.cvState.experience, state.experienceState],
+        },
+      };
+    });
+  },
+  handleAddProSkills: () => {
+    set((state) => {
+      return {
+        cvState: {
+          ...state.cvState,
+          proSkills: [...state.cvState.proSkills, state.proSkillState],
+        },
+      };
+    });
+  },
+  handleRangeChange: (e) => {
+    const { value } = e.target;
+    set((state) => {
+      console.log(state.skillRange);
+      return {
+        skillRange: (state.skillRange = parseInt(value)),
       };
     });
   },

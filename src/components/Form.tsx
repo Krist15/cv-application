@@ -1,35 +1,38 @@
 import React from 'react';
-import { About, EducationType, ExperienceType, ProSkillsType } from '../types';
 import printIcon from '../assets/print.svg';
 import { useCvState } from '../store/useStore';
 
 type FormProps = {
-  width: number;
-  about: About;
-  education: EducationType;
-  experience: ExperienceType;
-  educationList: EducationType[];
-  experienceList: ExperienceType[];
-  proSkillsList: ProSkillsType[];
-  handleRangeChange: React.ChangeEventHandler<HTMLInputElement>;
-  handleInputChange: React.ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
-  handleEducation: () => void;
-  handleExperience: () => void;
-  handleProSkills: () => void;
   handlePrint: () => void;
   handleImageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Form(props: FormProps) {
-  const disableExperience = () => props.experienceList.length >= 3;
+  const {
+    handleAboutChange,
+    handleEducationChange,
+    handleAddEducation,
+    handleExperienceChange,
+    handleAddExperience,
+    handleContactMeChange,
+    handleAddProSkills,
+    handleProSkillsChange,
+    handleRangeChange,
+    cvState,
+    skillRange,
+  } = useCvState();
 
-  const disableEducation = () => props.educationList.length >= 3;
+  const disableExperience = () => {
+    if (cvState.education.length >= 3) {
+      return true;
+    }
+  };
 
-  const disableProSkills = () => props.proSkillsList.length >= 5;
+  console.log(disableExperience());
 
-  const { handleAboutChange, handleEducationChange } = useCvState();
+  const disableEducation = () => cvState.education.length >= 3;
+
+  const disableProSkills = () => cvState.proSkills.length >= 5;
 
   return (
     <div className="w-2/5 h-full bg-[#f5f4ee]">
@@ -115,7 +118,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="school"
             placeholder="University"
-            onChange={props.handleInputChange}
+            onChange={handleEducationChange}
             className="rounded-md bg-gray-200"
           />
           <label
@@ -129,7 +132,7 @@ export default function Form(props: FormProps) {
             rows={2}
             cols={30}
             placeholder="Description"
-            onChange={props.handleInputChange}
+            onChange={handleEducationChange}
             className="rounded-md bg-gray-200 resize-none"
           />
           <button
@@ -137,7 +140,7 @@ export default function Form(props: FormProps) {
             className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 ${
               disableEducation() && 'bg-gray-100 cursor-not-allowed'
             }`}
-            onClick={props.handleEducation}
+            onClick={handleAddEducation}
             disabled={disableEducation()}
           >
             ➕
@@ -155,7 +158,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="experiencePeriod"
             placeholder="2021 - Present"
-            onChange={props.handleInputChange}
+            onChange={handleExperienceChange}
             className="rounded-md bg-gray-200"
           />
           <label
@@ -168,7 +171,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="company"
             placeholder="Company Name"
-            onChange={props.handleInputChange}
+            onChange={handleExperienceChange}
             className="rounded-md bg-gray-200"
           />
           <label
@@ -182,7 +185,7 @@ export default function Form(props: FormProps) {
             rows={2}
             cols={30}
             placeholder="Description"
-            onChange={props.handleInputChange}
+            onChange={handleExperienceChange}
             className="rounded-md bg-gray-200 resize-none"
           />
           <button
@@ -190,7 +193,7 @@ export default function Form(props: FormProps) {
             className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 ${
               disableExperience() && 'bg-gray-100 cursor-not-allowed'
             }`}
-            onClick={props.handleExperience}
+            onClick={handleAddExperience}
             disabled={disableExperience()}
           >
             ➕
@@ -208,7 +211,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="address"
             placeholder="1234 Main St, Anytown, USA"
-            onChange={props.handleInputChange}
+            onChange={handleContactMeChange}
             className="rounded-md bg-gray-200"
           />
         </div>
@@ -223,7 +226,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="web"
             placeholder="https://example.com"
-            onChange={props.handleInputChange}
+            onChange={handleContactMeChange}
             className="rounded-md bg-gray-200"
           />
         </div>
@@ -238,7 +241,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="phone"
             placeholder="(123) 456-7890"
-            onChange={props.handleInputChange}
+            onChange={handleContactMeChange}
             className="rounded-md bg-gray-200"
           />
         </div>
@@ -249,28 +252,28 @@ export default function Form(props: FormProps) {
               htmlFor="skills"
               className="text-center font-light text-lg"
             >
-              Skill {props.width}%
+              Skill {skillRange}%
             </label>
             <input
               type="text"
               name="skill"
               placeholder="Javascript"
               className="rounded-md bg-gray-200"
-              onChange={props.handleInputChange}
+              onChange={handleProSkillsChange}
             />
             <input
               type="range"
               min={1}
               max={100}
               step={1}
-              value={props.width}
-              onChange={props.handleRangeChange}
+              value={skillRange}
+              onChange={handleRangeChange}
             />
           </div>
           <div className="flex items-end justify-end h-full">
             <button
               type="button"
-              onClick={props.handleProSkills}
+              onClick={handleAddProSkills}
               disabled={disableProSkills()}
               className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 w-10 h-10 mt-6 text-white text-3xl flex justify-center ${
                 disableProSkills() && 'bg-gray-100 cursor-not-allowed'

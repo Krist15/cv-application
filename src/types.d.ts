@@ -32,6 +32,6 @@ export interface CvInfo {
   about: AboutMe;
   contactMe: ContactMeType;
   education: EducationType[];
-  experience: ExperienceType;
+  experience: ExperienceType[];
   proSkills: ProSkillsType[];
 }
