@@ -19,18 +19,23 @@ export default function Form(props: FormProps) {
     handleProSkillsChange,
     handleRangeChange,
     cvState,
+    experienceState,
+    educationState,
     skillRange,
   } = useCvState();
 
-  const disableExperience = () => {
-    if (cvState.education.length >= 3) {
-      return true;
+  const isSectionDisabled = (section: string) => {
+    switch (section) {
+      case 'education':
+        return cvState.education.length >= 3;
+      case 'experience':
+        return cvState.experience.length >= 3;
+      case 'proSkills':
+        return cvState.proSkills.length >= 5;
+      default:
+        return false;
     }
   };
-
-  const disableEducation = () => cvState.education.length >= 3;
-
-  const disableProSkills = () => cvState.proSkills.length >= 5;
 
   return (
     <div className="w-2/5 h-full bg-[#f5f4ee]">
@@ -102,7 +107,8 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="period"
-            placeholder="2020-2021"
+            placeholder={`${!cvState.education.length ? '2020-2021' : ''}`}
+            value={educationState.period}
             onChange={handleEducationChange}
             className="rounded-md bg-gray-200"
           />
@@ -115,7 +121,8 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="school"
-            placeholder="University"
+            placeholder={`${!cvState.education.length ? 'University' : ''}`}
+            value={educationState.school}
             onChange={handleEducationChange}
             className="rounded-md bg-gray-200"
           />
@@ -129,17 +136,18 @@ export default function Form(props: FormProps) {
             name="description"
             rows={2}
             cols={30}
-            placeholder="Description"
+            value={educationState.description}
+            placeholder={`${!cvState.education.length ? 'Description' : ''}`}
             onChange={handleEducationChange}
             className="rounded-md bg-gray-200 resize-none"
           />
           <button
             type="button"
             className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 ${
-              disableEducation() && 'bg-gray-100 cursor-not-allowed'
+              isSectionDisabled('education') && 'bg-gray-100 cursor-not-allowed'
             }`}
             onClick={handleAddEducation}
-            disabled={disableEducation()}
+            disabled={isSectionDisabled('education')}
           >
             ➕
           </button>
@@ -156,6 +164,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="experiencePeriod"
             placeholder="2021 - Present"
+            value={experienceState.experiencePeriod}
             onChange={handleExperienceChange}
             className="rounded-md bg-gray-200"
           />
@@ -169,6 +178,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="company"
             placeholder="Company Name"
+            value={experienceState.company}
             onChange={handleExperienceChange}
             className="rounded-md bg-gray-200"
           />
@@ -183,16 +193,18 @@ export default function Form(props: FormProps) {
             rows={2}
             cols={30}
             placeholder="Description"
+            value={experienceState.experienceDescription}
             onChange={handleExperienceChange}
             className="rounded-md bg-gray-200 resize-none"
           />
           <button
             type="button"
             className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 ${
-              disableExperience() && 'bg-gray-100 cursor-not-allowed'
+              isSectionDisabled('experience') &&
+              'bg-gray-100 cursor-not-allowed'
             }`}
             onClick={handleAddExperience}
-            disabled={disableExperience()}
+            disabled={isSectionDisabled('experience')}
           >
             ➕
           </button>
@@ -272,9 +284,10 @@ export default function Form(props: FormProps) {
             <button
               type="button"
               onClick={handleAddProSkills}
-              disabled={disableProSkills()}
+              disabled={isSectionDisabled('proSkills')}
               className={`bg-green-300 rounded border hover:bg-green-400 transition ease-out my-3 w-10 h-10 mt-6 text-white text-3xl flex justify-center ${
-                disableProSkills() && 'bg-gray-100 cursor-not-allowed'
+                isSectionDisabled('proSkills') &&
+                'bg-gray-100 cursor-not-allowed'
               }`}
             >
               +
