@@ -1,6 +1,7 @@
 import React from 'react';
 import { About, EducationType, ExperienceType, ProSkillsType } from '../types';
 import printIcon from '../assets/print.svg';
+import { useCvState } from '../store/useStore';
 
 type FormProps = {
   width: number;
@@ -28,6 +29,8 @@ export default function Form(props: FormProps) {
 
   const disableProSkills = () => props.proSkillsList.length >= 5;
 
+  const { handleAboutChange, handleEducationChange } = useCvState();
+
   return (
     <div className="w-2/5 h-full bg-[#f5f4ee]">
       <form className="flex flex-col gap-10 items-center">
@@ -43,7 +46,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="name"
             placeholder="Joe"
-            onChange={props.handleInputChange}
+            onChange={handleAboutChange}
             className="rounded-md bg-gray-200"
           />
         </div>
@@ -58,7 +61,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="lastName"
             placeholder="Doe"
-            onChange={props.handleInputChange}
+            onChange={handleAboutChange}
             className="rounded-md bg-gray-200"
           />
         </div>
@@ -73,7 +76,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="profession"
             placeholder="Web Developer"
-            onChange={props.handleInputChange}
+            onChange={handleAboutChange}
             className="rounded-md bg-gray-200"
           />
           <div className="flex">
@@ -99,7 +102,7 @@ export default function Form(props: FormProps) {
             type="text"
             name="period"
             placeholder="2020-2021"
-            onChange={props.handleInputChange}
+            onChange={handleEducationChange}
             className="rounded-md bg-gray-200"
           />
           <label
@@ -288,6 +291,11 @@ export default function Form(props: FormProps) {
             className="w-8"
           />
         </button>
+        <input
+          type="text"
+          name="profession"
+          onChange={handleAboutChange}
+        />
       </form>
     </div>
   );
