@@ -1,4 +1,3 @@
-import '../assets/location.svg';
 import locationLogo from '../assets/location.svg';
 import worldLogo from '../assets/world.svg';
 import phoneLogo from '../assets/phone.svg';
@@ -16,7 +15,7 @@ export default function ContactMe() {
         <div className="p-2">
           <img
             src={locationLogo}
-            alt=""
+            alt="Location Icon"
             className="w-8 relative top-4"
           />
         </div>
@@ -29,7 +28,7 @@ export default function ContactMe() {
         <div className="p-2">
           <img
             src={worldLogo}
-            alt=""
+            alt="World Icon"
             className="w-8 relative top-4"
           />
         </div>
@@ -42,7 +41,7 @@ export default function ContactMe() {
         <div className="p-2">
           <img
             src={phoneLogo}
-            alt=""
+            alt="Phone Icon"
             className="w-8 relative top-4"
           />
         </div>

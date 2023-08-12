@@ -28,8 +28,6 @@ export default function Form(props: FormProps) {
     }
   };
 
-  console.log(disableExperience());
-
   const disableEducation = () => cvState.education.length >= 3;
 
   const disableProSkills = () => cvState.proSkills.length >= 5;
@@ -294,11 +292,6 @@ export default function Form(props: FormProps) {
             className="w-8"
           />
         </button>
-        <input
-          type="text"
-          name="profession"
-          onChange={handleAboutChange}
-        />
       </form>
     </div>
   );

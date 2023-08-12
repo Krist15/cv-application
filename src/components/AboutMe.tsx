@@ -1,10 +1,6 @@
 import { useCvState } from '../store/useStore';
 
-type AboutProps = {
-  imageUrl: string | null;
-};
-
-export default function AboutMe({ imageUrl }: AboutProps) {
+export default function AboutMe({ imageUrl }: { imageUrl: string | null }) {
   const { cvState } = useCvState();
   const { name, lastName, profession } = cvState.about;
   return (
