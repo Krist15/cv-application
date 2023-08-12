@@ -22,5 +22,5 @@ export function useImage() {
     }
   };
 
-  return { selectedImage, getImage };
+  return { getImage, selectedImage };
 }

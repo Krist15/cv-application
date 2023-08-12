@@ -132,6 +132,12 @@ export const useCvState = create<CvState>((set) => ({
           ...state.cvState,
           education: [...state.cvState.education, state.educationState],
         },
+        educationState: {
+          ...state.educationState,
+          period: '',
+          school: '',
+          description: '',
+        },
       };
     });
   },
@@ -147,10 +153,14 @@ export const useCvState = create<CvState>((set) => ({
   },
   handleAddProSkills: () => {
     set((state) => {
+      const newSkill: ProSkillsType = {
+        skill: state.proSkillState.skill,
+        width: state.skillRange,
+      };
       return {
         cvState: {
           ...state.cvState,
-          proSkills: [...state.cvState.proSkills, state.proSkillState],
+          proSkills: [...state.cvState.proSkills, newSkill],
         },
       };
     });
