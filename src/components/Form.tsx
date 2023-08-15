@@ -38,7 +38,7 @@ export default function Form(props: FormProps) {
   };
 
   return (
-    <div className="w-2/5 h-full bg-[#f5f4ee]">
+    <div className="w-2/5 h-full mx-3 bg-[#fca311]">
       <form className="flex flex-col gap-10 items-center">
         <p className="text-2xl text-center">About Me</p>
         <div className="flex flex-col w-1/2">
@@ -86,13 +86,18 @@ export default function Form(props: FormProps) {
             className="rounded-md bg-gray-200"
           />
           <div className="flex">
-            <label htmlFor="select-image">Select Image</label>
+            <label
+              htmlFor="select-image"
+              className="my-4"
+            >
+              Select Image
+            </label>
             <input
               type="file"
               accept="image/jpeg, image/jpg, image/png"
               name="selectImage"
               id="select-image"
-              className="w-40"
+              className="w-40 my-4"
               onChange={props.handleImageChange}
             />
           </div>
