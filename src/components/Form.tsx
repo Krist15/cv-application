@@ -89,6 +89,7 @@ export default function Form(props: FormProps) {
             <label htmlFor="select-image">Select Image</label>
             <input
               type="file"
+              accept="image/jpeg, image/jpg, image/png"
               name="selectImage"
               id="select-image"
               className="w-40"
@@ -163,7 +164,9 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="experiencePeriod"
-            placeholder="2021 - Present"
+            placeholder={`${
+              !cvState.experience.length ? '2021 - Present' : ''
+            }`}
             value={experienceState.experiencePeriod}
             onChange={handleExperienceChange}
             className="rounded-md bg-gray-200"
@@ -177,7 +180,7 @@ export default function Form(props: FormProps) {
           <input
             type="text"
             name="company"
-            placeholder="Company Name"
+            placeholder={`${!cvState.experience.length ? 'Company Name' : ''}`}
             value={experienceState.company}
             onChange={handleExperienceChange}
             className="rounded-md bg-gray-200"
@@ -192,7 +195,7 @@ export default function Form(props: FormProps) {
             name="experienceDescription"
             rows={2}
             cols={30}
-            placeholder="Description"
+            placeholder={`${!cvState.experience.length ? 'Description' : ''}`}
             value={experienceState.experienceDescription}
             onChange={handleExperienceChange}
             className="rounded-md bg-gray-200 resize-none"
@@ -267,7 +270,7 @@ export default function Form(props: FormProps) {
             <input
               type="text"
               name="skill"
-              placeholder="Javascript"
+              placeholder={`${!cvState.proSkills.length ? 'Javascript' : ''}`}
               className="rounded-md bg-gray-200"
               onChange={handleProSkillsChange}
             />

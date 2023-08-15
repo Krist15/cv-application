@@ -148,6 +148,12 @@ export const useCvState = create<CvState>((set) => ({
           ...state.cvState,
           experience: [...state.cvState.experience, state.experienceState],
         },
+        experienceState: {
+          ...state.experienceState,
+          company: '',
+          experienceDescription: '',
+          experiencePeriod: '',
+        },
       };
     });
   },
@@ -162,6 +168,12 @@ export const useCvState = create<CvState>((set) => ({
           ...state.cvState,
           proSkills: [...state.cvState.proSkills, newSkill],
         },
+        proSkillState: {
+          ...state.proSkillState,
+          skill: '',
+          width: 0,
+        },
+        skillRange: 0,
       };
     });
   },
