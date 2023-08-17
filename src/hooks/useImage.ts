@@ -18,7 +18,9 @@ export function useImage() {
         throw new Error('Unsupported image type');
       }
     } catch (error) {
-      alert(error);
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
   };
 
