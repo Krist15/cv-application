@@ -7,7 +7,7 @@ import { useImage } from './hooks/useImage';
 
 export default function App() {
   const { getImage, selectedImage } = useImage();
-  const componenRef = useRef(null);
+  const componenRef = useRef<HTMLDivElement | null>(null);
 
   const handlePrint = useReactToPrint({
     content: () => componenRef.current,
