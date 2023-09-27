@@ -29,7 +29,7 @@ export type ProSkillsType = {
 };
 
 export interface CvInfo {
-  about: AboutMe;
+  about: About;
   contactMe: ContactMeType;
   education: EducationType[];
   experience: ExperienceType[];
